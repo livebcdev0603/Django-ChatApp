@@ -30,9 +30,9 @@ class SignUpForm(forms.Form):
 
     def validate_email(self):
         email = self.cleaned_data['email']
-        r = UserProfile.objects.filter(email=email)
-        if r.count():
-            return None
+        # r = UserProfile.objects.filter(email=email)
+        # if r.count():
+        #     return None
         return email
 
     def save(self, commit=True):
