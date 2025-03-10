@@ -82,6 +82,31 @@ def search(request):
     return render(request, "chat/search.html", {'users': users, 'friends': friends})
 
 
+def addFriend(request, name):
+    """
+    Add a user to the friend's list
+    :param request:
+    :param name:
+    :return:
+    """
+
+    username = request.user.username
+    id = getUserId(username)
+    friend = UserProfile.objects.get(username=name)
+    curr_user = UserProfile.objects.get(id=id)
+    print(curr_user.name)
+    ls = curr_user.friends_set.all()
+    flag = 0
+    for username in ls:
+        if username.friend == friend.id:
+            flag = 1
+            break
+    if flag == 0:
+        print("Friend Added!!")
+        curr_user.friends_set.create(friend=friend.id)
+        friend.friends_set.create(friend=id)
+    return redirect("/search")
+
 
 def chat(request, username):
     """
