@@ -22,10 +22,10 @@ class SignUpForm(forms.Form):
     def validate_password(self):
         password1 = self.cleaned_data['password1']
         password2 = self.cleaned_data['password2']
-        if not password1 or not password2:
-            return None
-        elif password2 != password1:
-            return None
+        # if not password1 or not password2:
+        #     return None
+        # elif password2 != password1:
+        #     return None
         return password1
 
     def validate_email(self):
