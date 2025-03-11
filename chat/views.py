@@ -36,6 +36,21 @@ def getUserId(username):
     return id
 
 
+def index(request):
+    """
+    Return the home page
+    :param request:
+    :return:
+    """
+    if not request.user.is_authenticated:
+        print("Not Logged In!")
+        return render(request, "chat/index.html", {})
+    else:
+        username = request.user.username
+        id = getUserId(username)
+        friends = getFriendsList(id)
+        return render(request, "chat/Base.html", {'friends': friends})
+
 
 def search(request):
     """
