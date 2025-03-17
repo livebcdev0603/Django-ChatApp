@@ -23,8 +23,8 @@ class Messages(models.Model):
     def __str__(self):
         return f"To: {self.receiver_name} From: {self.sender_name}"
 
-    # class Meta:
-    #     ordering = ('timestamp',)
+    class Meta:
+        ordering = ('timestamp',)
 
 
 class Friends(models.Model):
